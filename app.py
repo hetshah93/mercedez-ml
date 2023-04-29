@@ -15,13 +15,6 @@ stacked_model=pickle.load(open('stacked_Model.pkl','rb'))
 def home():
     return render_template('index.html')
 
-@app.route('/predict',methods=["POST"])
-def predict():
-    feature=[int(x) for x in request.form.values()]
-    feature_final=np.array(feature).reshape(-1,1)
-    prediction=model.predict(feature_final)
-    return render_template('index.html',prediction_text='Price of House will be Rs. {}'.format(int(prediction)))
-
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':

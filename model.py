@@ -10,8 +10,8 @@ from tpot.builtins import StackingEstimator
 import xgboost as xgb
 
 
-train_df = pd.read_csv("C:\\Users\\003XRJ744\\Desktop\\AI-ML\\input\\train.csv")
-test_df = pd.read_csv("C:\\Users\\003XRJ744\\Desktop\\AI-ML\\input\\test.csv")
+train_df = pd.read_csv("train.csv")
+test_df = pd.read_csv("test.csv")
 
 def process_data (train_dataf, test_dataf, n_components=180):
     train_dataf = pd.get_dummies(train_dataf)
