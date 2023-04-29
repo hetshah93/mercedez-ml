@@ -9,7 +9,7 @@ import xgboost as xgb
 
 app = Flask('__name__', template_folder='templates')
 xgb_model=pickle.load(open('xgb_model.pkl','rb'))
-stacked_model=pickle.load(open('stacked_Model.pkl','rb'))
+stacked_model=pickle.load(open('stacked_model.pkl','rb'))
 
 @app.route('/')
 def home():
@@ -22,9 +22,7 @@ def upload_file():
       df = pd.read_csv(f)
       df = pd.get_dummies(df)
       print(df.shape)
-      df.align(df, join='inner', axis=1)
-      print(df.shape)
-      X_test = PCA(n_components=1).fit_transform(df)
+      X_test = np.array(df)      
       print(X_test.shape)
       final_predictions = 0.725 * xgb_model.predict(xgb.DMatrix(X_test)) + 0.275 *stacked_model.predict(X_test)
       print('uploaded the file')
